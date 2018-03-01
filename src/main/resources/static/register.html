@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>用户注册</title>
+    <link rel="stylesheet " href="static/css/zui.css">
+    <script type="text/javascript" src="static/js/jquery-3.2.1.js"></script>
+    <!--<link href="static/css/bootstrap-theme.css" rel="stylesheet" type="text/css">-->
+    <script src="static/js/jquery.cookie.js"></script>
+    <link rel="stylesheet" href="static/css/register.css">
+    <script src="static/js/lbl.js"></script>
+</head>
+<body>
+<form action="" id="register">
+    <div class="pos1">
+        <div style="text-align:center;font-weight: bold ;font-size: 20px;color: #c52f2b;">用户注册</div>
+        <label>身份选择:</label>
+        <select id="mySelect" style="width: 83%;height: 30px;">
+            <option value="1">学生</option>
+            <option value="2">教师</option>
+        </select>
+        <input class="form-control form-focus"  id="int1" name="username" style="height:35px;" autofocus type="text" placeholder="用户名:"><br>
+        <input class="form-control form-focus"  name="password" style="height:35px;" autofocus type="password" placeholder="密码:"><br>
+        <input class="form-control form-focus"  name="realName" style="height:35px;" autofocus type="text" placeholder="真实姓名:"><br>
+        <input class="form-control form-focus"  name="studentNumber" style="height:35px;" autofocus type="text" placeholder="学号:不能为空！"><br>
+        <input class="form-control form-focus"  name="major" style="height:35px;" autofocus type="text" placeholder="专业:不能为空！"><br>
+        <input class="form-control form-focus"  name="phone" style="height:35px;" autofocus type="text" placeholder="电话:"><br>
+        <input class="form-control form-focus"  name="qqNumber" style="height:35px;" autofocus type="text" placeholder="Q Q:"><br>
+        <input type="button" class="btn btn-info " id="regpost" value="注册">
+    </div>
+</form>
+
+<script>
+
+    try {
+        $("#mySelect").change(function() {
+            if($("#mySelect option:selected").text()=="教师"){
+                window.location.href="teacherRegister.html";
+            }
+        });
+    }catch (err){
+        txt="本页出现错误"
+    }
+
+    //用户注册提交
+    $("#regpost").click(function () {
+        $.ajax({
+            type:'post',
+            url:urlPrefix+"/pub/studentRegister",
+            data:$("#register").serialize(),//表单数据
+            success:function (data){
+                //判断后台数据执行
+                if(data.successful==true){
+                    alert("注册成功！");
+                    $.cookie('id',data.data.id,{expires:7,path:'/'});
+                    window.location.href='login.html';
+                }else{
+                    alert("注册失败！");
+                    window.location.href('register.html')
+                }
+            }
+        });
+    });
+</script>
+</body>
+</html>

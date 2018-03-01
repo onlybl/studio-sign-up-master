@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>项目申请详情表</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="static/css/layui.css"  media="all">
+    <!--<script src="static/js/layui.js" charset="utf-8"></script>-->
+    <link rel="stylesheet" href="static/css/styles.css">
+    <link rel="stylesheet" href="static/css/projectList.css">
+    <script src="static/js/jquery-3.2.1.js"></script>
+    <link rel="stylesheet" href="static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="static/css/bootstrap-theme.css">
+    <script src="static/js/bootstrap.min.js"></script>
+    <script src="static/js/lbl.js"></script>
+    <script src="static/js/jquery.cookie.js"></script>
+    <link rel="stylesheet" type="text/css" href="static/css/dataTables.css"/>
+    <script type="text/javascript" src="static/js/datatables.js"></script>
+    <script src="static/js/jquery.table2excel.js"></script>
+</head>
+<body>
+<div class="wrapper">
+    <ul class="bg-bubbles">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+
+</div>
+
+<ul class="layui-nav">
+    <li class="layui-nav-item">
+        <a style="font-size: 20px;font-weight: bold;font-family: 宋体;">
+            <i class="layui-icon" style="font-size: 25px;padding-right: 20px;">&#xe68e;</i>教师管理中心</a>
+    </li>
+    <li class="layui-nav-item layui-this">
+        <a href="projectList.html">我的项目</a>
+    </li>
+    <li class="layui-nav-item"><a href="addProject.html">新的发布</a></li>
+    <li class="layui-nav-item">
+        <a href="javascript:"></a>
+        <dl class="layui-nav-child">
+            <dd><a href="">移动模块</a></dd>
+            <dd><a href="">后台模版</a></dd>
+            <dd><a href="">选中项</a></dd>
+            <dd><a href="">电商平台</a></dd>
+        </dl>
+    </li>
+    <div id="msg">
+        <li class="layui-nav-item" lay-unselect="">
+            <a onclick="logOut()">注销</a>
+            <dl class="layui-nav-child">
+                <dd><a href="javascript:;">注销登录</a></dd>
+            </dl>
+        </li>
+    </div>
+</ul>
+
+<!--侧边导航栏-->
+<ul class="layui-nav layui-nav-tree layui-inline" id="layui-nav" lay-filter="demo">
+    <li class="layui-nav-item">
+        <button class="layui-btn" href="" style="width: 100%;height: 45px;" onclick="showTable()">
+            <i class="layui-icon" style="font-size: 20px; padding-right: 10px;">&#xe63c;</i>
+            项目列表
+        </button>
+    </li>
+    <li class="layui-nav-item">
+        <button class="layui-btn" style="width: 100%;height: 45px;" onclick="showMsg()">
+            <i class="layui-icon" style="font-size: 20px; padding-right: 10px;">&#xe60a;</i>
+            项目详情
+        </button>
+    </li>
+    <li class="layui-nav-item">
+        <button class="layui-btn" style="width: 100%;height: 45px;" onclick="showInterview()">
+            <i class="layui-icon" style="font-size: 20px; padding-right: 10px;">&#xe606;</i>
+            成员面试
+        </button>
+    </li>
+</ul>
+
+<!--项目详情-->
+
+<div id="tab2">
+    <button style="margin-bottom:-45px;float:right;width: 80px;height: 28px;" class="btn btn-default" onclick="$('#projectMsgTable').table2excel({ exclude: '.excludeThisClass',
+                                                name: 'Worksheet Name',
+                                                filename: '导出表格',
+                                                exclude: '.noExl',});">
+        <p>导出Excel</p></button>
+    <form id="applyPassed">
+        <p style="float: right;padding-top: 3px;margin-right: 8%">已通过</p>
+        <input style="height: 20px;width: 20px;float: right;" type="checkbox" checked="checked" value="Car" />
+    </form>
+    <table id="projectMsgTable" class="table table-hover table-bordered table-responsive display" cellspacing="0" width="100%">
+        <caption style="font-size: 20px;text-align: center;color: #1a1a1a;"><b>项目申请统计表</b></caption>
+        <colgroup>
+            <col style="width: 15%">
+            <col style="width: 15%">
+            <col style="width: 15%">
+            <col style="width: 15%">
+            <col style="width: 15%">
+            <col style="width: 15%">
+            <col style="width: 10%">
+        </colgroup>
+        <thead>
+        <tr>
+            <th style="text-align: center">用户名</th>
+            <th  style="text-align: center">真实姓名</th>
+            <th style="text-align: center">专业</th>
+            <th style="text-align: center">电话</th>
+            <th class="noExl" style="text-align: center">简介</th>
+            <th class="noExl" style="text-align: center">标记</th>
+            <th class="noExl" style="text-align: center">备注</th>
+        </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+</div>
+
+
+<!--学生个人简介模态框-->
+
+<div class="modal fade" id="studentMsg" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel" style="text-align: center">个人简介</h4>
+            </div>
+            <!--个人信息-->
+            <form id="mod">
+                <textarea name="personalIntroduction" id="personalIntroduction" style="width: 98%; height:300px; margin-left: 1%"></textarea>
+            </form>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+
+<!--添加备注模态框-->
+<div class="modal fade" id="remark" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel" style="text-align: center">添加备注</h4>
+            </div>
+            <!--个人信息-->
+            <form id="mod">
+                <textarea name="teacherRemark" id="teacherRemark" style="width: 98%; height:300px; margin-left: 1%" placeholder="若初审通过，可备注面试提问："></textarea>
+            </form>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-success" data-dismiss="modal" onclick="saveRemark()">Save</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+
+</body>
+
+<script>
+
+    //按钮监听
+    function showStudentMsg(obj) {
+        var btnNum=$(obj).parent().parent().index();//当前点击学生的在数组中的位置
+        $("#studentMsg").modal("show");
+        $.ajax({
+            type:'get',
+            url:urlPrefix+"/v1/project/"+$.cookie('projectId')+"/sighUpInfo",
+            data:"client_id="+$.cookie('client_id')+"&digest="+$.cookie('digest'),
+            success:function (data) {
+                $("textarea#personalIntroduction").text(data.data[btnNum].personalIntroduction);
+            }
+        })
+    }
+
+    //教师备注提交
+    var signUpInfoId;
+    var userId;
+    function saveRemark() {
+        $.ajax({
+            type:'patch',
+            url:urlPrefix+"/v1/project/"+$.cookie('projectId')+"/sighUpInfo/"+signUpInfoId,
+            data:{
+                client_id:$.cookie("client_id"),
+                digest:$.cookie("digest"),
+                teacherRemark:$("textarea#teacherRemark").val()
+            },
+            success:function (data) {
+                $("#remark").modal("hide");
+            }
+        })
+    }
+    //教师备注显示
+    function showRemark(obj) {
+        var btnNum=$(obj).parent().parent().index();//当前点击学生的在数组中的位置
+        $.ajax({
+            type:'get',
+            url:urlPrefix+"/v1/project/"+$.cookie('projectId')+"/sighUpInfo?",
+            data:"client_id="+$.cookie('client_id')+"&digest="+$.cookie('digest'),
+            success:function (data) {
+                $("textarea#teacherRemark").text(data.data[btnNum].teacherRemark);
+                signUpInfoId=data.data[btnNum].sighUpInfoId;
+                userId=data.data[btnNum].userId;
+            }
+        })
+    }
+
+    $(function () {
+        loadApplyPassedTable();//加载通过信息表
+    });
+
+
+    //    datatables渲染表格方法
+    $(function (){
+        $("#projectMsgTable").DataTable({
+            ordering:false   //排序功能关闭
+        });
+    });
+
+    //页面切换相关函数
+    function showTable(){
+        window.location.href="projectList.html"
+    }
+    function showMsg() {
+        window.location.href="applyMessage.html"
+    }
+    function showInterview() {
+        window.location.href="interview.html"
+    }
+
+    //筛选通过单选框监听
+    $("form#applyPassed input").change(function () {
+        if($("form#applyPassed input").is(":checked")==true){
+            location.reload();
+        }else{
+            window.location.href="applyMessageTable.html"
+        }
+    })
+
+</script>
+</html>

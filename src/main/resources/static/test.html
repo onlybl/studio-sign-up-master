@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="static/js/jquery-3.2.1.js"></script>
+    <script src="static/js/jquery.table2excel.js"></script>
+</head>
+<body>
+<table id="tables" class="table table-hover table-bordered">
+    <caption style="font-size: 20px;text-align: center;color: #1a1a1a"><b>项目列表</b></caption>
+    <colgroup>
+        <col style="width: 30%">
+        <col style="width: 40%">
+        <col style="width: 30%">
+    </colgroup>
+    <tbody>
+    <tr>
+        <th>项目名称</th>
+        <th>项目简介</th>
+        <th>发布日期</th>
+    </tr>
+    <tr>
+        <td>ahhaha</td>
+        <td>heheehe</td>
+        <td class="noExl">xixixi</td>
+    </tr>
+    <tr>
+        <td>ahhaha</td>
+        <td>heheehe</td>
+        <td class="noExl">xixixi</td>
+    </tr>
+    <tr>
+        <td>ahhaha</td>
+        <td>heheehe</td>
+        <td class="noExl">xixixi</td>
+    </tr>
+    <tr>
+        <td>ahhaha</td>
+        <td>heheehe</td>
+        <td class="noExl">xixixi</td>
+    </tr>
+    <tr>
+        <td>ahhaha</td>
+        <td>heheehe</td>
+        <td class="noExl">xixixi</td>
+    </tr>
+    <tr>
+        <td>ahhaha</td>
+        <td>heheehe</td>
+        <td class="noExl">xixixi</td>
+    </tr>
+    </tbody>
+</table>
+
+<button onclick="$('#tables').table2excel({ exclude: '.excludeThisClass',
+                                                name: 'Worksheet Name',
+                                                filename: '导出表格',
+                                                exclude: '.noExl',});">
+    <p>导出Excel</p></button>
+</body>
+</html>

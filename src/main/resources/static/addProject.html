@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>新增项目</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="static/css/layui.css"  media="all">
+    <script src="static/js/jquery-3.2.1.js"></script>
+    <script src="static/js/layui.js"></script>
+    <link rel="stylesheet" href="static/css/styles.css">
+    <link rel="stylesheet" href="static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="static/css/addProject.css">
+    <script src="static/js/jquery.cookie.js"></script>
+    <script src="static/js/lbl.js"></script>
+</head>
+<body>
+<div class="wrapper">
+    <ul class="bg-bubbles">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</div>
+
+<ul class="layui-nav">
+    <li class="layui-nav-item"><a style="font-size: 20px;font-weight: bold;font-family: 宋体;"><i class="layui-icon" style="font-size: 25px;padding-right: 20px;">&#xe68e;</i>教师管理中心</a></li>
+    <li class="layui-nav-item ">
+        <a href="projectList.html">我的项目</a>
+    </li>
+    <li class="layui-nav-item layui-this"><a href="addProject.html">新的发布</a>
+    </li>
+    <li class="layui-nav-item">
+        <a href="javascript:;"></a>
+        <dl class="layui-nav-child">
+            <dd><a href="">移动模块</a></dd>
+            <dd><a href="">后台模版</a></dd>
+            <dd><a href="">电商平台</a></dd>
+        </dl>
+    </li>
+    <div id="msg">
+        <li class="layui-nav-item" lay-unselect="">
+            <a onclick="logOut()">注销</a>
+            <dl class="layui-nav-child">
+                <dd><a href="login.html">退出登录</a></dd>
+            </dl>
+        </li>
+    </div>
+</ul>
+
+<!--侧边导航栏-->
+<ul style="box-shadow:5px 5px 5px 3px #36B59E; " class="layui-nav layui-nav-tree layui-inline" id="layui-nav" lay-filter="demo">
+    <li class="layui-nav-item">
+        <button class="layui-btn" data-toggle="tooltip" data-placement="right" title="点击新增" style="width: 100%;height: 45px;">
+            <i class="layui-icon" style="font-size: 20px; padding-right: 10px;">&#xe61f;</i>
+            我要发布
+        </button>
+    </li>
+</ul>
+
+<!--新增项目-->
+<div id="tab">
+    <form id="projectInfo">
+        <label for="exampleInputEmail1" style="margin-left: 45%;margin-bottom:10px; font-size: 18px">项目名称</label>
+        <input type="text" class="form-control" style="box-shadow:7px 7px 7px 3px #009688; " id="exampleInputEmail1" name="name" placeholder="项目名称：">
+        <label for="exampleInputEmail1" style=" margin-left: 45%;font-size: 18px;margin-top: 20px;">项目简介</label>
+        <textarea name="introduction" id="introduction" class="form-control" style="box-shadow:7px 7px 7px 3px #009688; width:100%;height:300px;margin-top: 10px;" placeholder="不超过300字！"></textarea>
+    </form>
+    <button type="button" class="btn btn-info" style="margin-top: 30px; margin-left: 45%;width: 80px;" onclick="submitProject();">提&nbsp;&nbsp;&nbsp;交</button>
+</div>
+
+</body>
+
+<script>
+
+</script>
+</html>

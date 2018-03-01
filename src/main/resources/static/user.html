@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>学生端</title>
+    <script src="static/js/jquery-3.2.1.js"></script>
+    <link href="static/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="static/css/bootstrap-theme.css" rel="stylesheet" type="text/css">
+    <link href="static/css/zui.css" rel="stylesheet" type="text/css">
+    <link href="static/css/hover-min.css" rel="stylesheet" type="text/css">
+    <script src="static/js/bootstrap.min.js"></script>
+    <script src="static/js/jquery.cookie.js"></script>
+    <link rel="stylesheet" href="static/css/user.css">
+    <script src="static/js/lbl.js"></script>
+</head>
+<body>
+<div id="main">
+
+    <div class="container-fluid" id="tip">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                    data-target="#example-navbar-collapse">
+                <span class="sr-only">切换导航</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand " href="user.html"><span1>个人主页</span1></a>
+        </div>
+        <div class="collapse navbar-collapse tabbable" id="example-navbar-collapse">
+            <ul class="nav navbar-nav nav-tabs">
+                <li class="hvr-float-shadow"><a href="#tab1" id="tip1" data-toggle="tab"><span>个人信息</span></a></li>
+                <li class="hvr-float-shadow"><a href="#tab2" id="tip2" data-toggle="tab"><span>我的项目</span></a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right" id="tip4">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle hvr-float-shadow" data-toggle="dropdown">
+                        账号 <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu" id="exist">
+                        <li><a href="login.html" onclick="logOut()">注销登录</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+<div class="tab-content" id="tab">
+    <div class="tab-pane active" id="tab1">
+        <div class="table-responsive"><!--响应式-->
+            <table class="table table-hover table-condensed" id="form1">
+                <caption style="font-size: 20px;text-align: center;color: #1a1a1a">个人信息</caption>
+                <colgroup>
+                    <col style="width: 10%">
+                    <col style="width: 40%">
+                </colgroup>
+                <tr>
+                    <th>用户名：</th>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th>真实姓名：</th>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th>学号：</th>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th>专业：</th>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th>电话：</th>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th>Q Q：</th>
+                    <td></td>
+                </tr>
+            </table>
+        </div>
+
+        <!--头像上传-->
+        <div id="msg">
+            <div class="form-group" id="photo">
+                <label for="photo" class=" control-label" id="head">照片</label>
+                <p>建议上传长宽比为4:3的照片</p>
+                <div id="userPhoto" style='width:180px; height:240px;'>
+                    <img id="userPhoto_img" src="" width="180" height="240" />
+                </div>
+                <form id="photoFile">
+                    <input type="file" id="file" name="file" onchange='setPhoto(this)' style="width: 180px"/>
+                </form>
+            </div>
+            <button type="button" id="btn2" class="btn btn-info " onclick="upLoadPhoto()">上传照片</button>
+        </div>
+        <button type="button" id="btn1" class="btn btn-info " data-toggle="modal" data-target="#myModal">修改</button>
+
+        <!--个人信息修改模态框-->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="myModalLabel" style="text-align: center">个人信息修改</h4>
+                    </div>
+                    <!--个人信息-->
+                    <form id="mod" autocomplete="on">
+                        <label for="exampleInputEmail1">用户名</label>
+                        <input type="email" class="form-control" id="exampleInputEmail1" name="username" placeholder="用户名">
+                        <label for="exampleInputEmail1">真实姓名</label>
+                        <input type="email" class="form-control" id="exampleInputEmail1" name="realName" placeholder="真实姓名">
+                        <label for="exampleInputEmail1">学号</label>
+                        <input type="email" class="form-control" id="exampleInputEmail1" name="studentNumber" placeholder="学号">
+                        <label for="exampleInputEmail1">专业</label>
+                        <input type="email" class="form-control" id="exampleInputEmail1" name="major" placeholder="专业">
+                        <label for="exampleInputEmail1">电话</label>
+                        <input type="email" class="form-control" id="exampleInputEmail1" name="phone" placeholder="电话">
+                        <label for="exampleInputEmail1">Q Q</label>
+                        <input type="email" class="form-control" id="exampleInputEmail1" name="QQ" placeholder="Q Q">
+                    </form>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" onclick="saveChange()">submit</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal -->
+        </div>
+
+        <div id="other"></div>
+    </div>
+
+    <!--我的项目-->
+    <div class="tab-pane" id="tab2">
+
+        <ul id="myTab" class="nav nav-tabs nav-stacked">
+            <li class="active"><a href="#pro1" data-toggle="tab" onclick="change1();" style="font-size: 15px;text-align: center">我的项目</a></li>
+            <li><a href="#pro2" data-toggle="tab" onclick="change2();" style="font-size: 15px;text-align: center">新的申请</a></li>
+        </ul>
+        <div id="myTabContent" class="tab-content">
+
+            <!--我的项目显示-->
+            <div class="tab-pane fade in active" id="pro1">
+                <table class="table table-hover table-condensed" id="form2">
+                    <caption style="font-size: 20px;text-align: center;color: #1a1a1a">项目列表</caption>
+                    <colgroup>
+                        <col style="width: 25%">
+                        <col style="width: 35%">
+                        <col style="width: 25%">
+                        <col style="width: 15%">
+                    </colgroup>
+                    <tbody>
+                    <tr>
+                        <th>项目名称</th>
+                        <th>申请日期</th>
+                        <th>审核状态</th>
+                        <th>管理</th>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="tab-pane fade" id="pro2">
+
+                <!--新的项目申请-->
+                <table class="table table-hover table-condensed table-bordered" id="form3">
+                    <caption style="font-size: 20px;text-align: center;color: #1a1a1a">项目列表</caption>
+                    <colgroup>
+                        <col style="width: 30%">
+                        <col style="width: 25%">
+                        <col style="width: 25%">
+                        <col style="width: 20%">
+                    </colgroup>
+                    <tbody>
+                    <tr>
+                        <th>项目名称</th>
+                        <th>项目简介</th>
+                        <th>发布者</th>
+                        <th>申请</th>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div id="other2"></div>
+
+    </div>
+    <!--项目简介模态框-->
+    <div class="modal fade" id="projectIntroduction" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel" style="text-align: center">项目简介</h4>
+                </div>
+                <div class="modal-body" style="height: 400px">
+                    <textarea name="introduction" id="introduction" style="width:100%;height:100%;"></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+
+</div>
+</div>
+<!--个人简介模态框-->
+<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel" style="text-align: center">个人简介</h4>
+            </div>
+            <div class="modal-body" style="height: 400px">
+                <textarea name="introduction" id="personalIntroduction" style="width:100%;height:100%;" placeholder="根据项目详情阐述个人简介，不超过200字！"></textarea>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="introductionSubmit()">submit</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+<div style="text-align: center;margin-top: 20px;">
+    <ul class="list-inline">
+        <li><a>关于我们</a></li>
+        <li><a>联系我们</a></li>
+        <li><a>招贤纳士</a></li>
+        <li><a href="http://xxgc.sicau.edu.cn/">友情链接</a></li>
+        <li><a>服务声明</a></li>
+    </ul>
+</div>
+<div style="text-align: center;margin-top: 5px;">
+    Copyright &copy;2018 物联网工作室 版权所有
+</div>
+</body>
+
+
+<script>
+//    获取头像地址
+    function setPhoto(fileImg){
+        var path = window.URL.createObjectURL(fileImg.files[0]);
+        document.getElementById("userPhoto_img").src=path;
+    }
+
+var studentNumber;
+var major;
+var qqNumber;
+var studentInfoId;
+
+//照片上传方法
+function upLoadPhoto(){
+    var formData=new FormData($("#photoFile"));
+    formData.append("studentNumber",studentNumber);
+    formData.append("major",major);
+    formData.append("qqNumber",qqNumber);
+    $.ajax({
+        type:'put',
+        url:urlPrefix+"/v1/user/"+$.cookie('client_id')+"/studentInfo/"+studentInfoId+"?client_id="+$.cookie('client_id')+"&digest="+$.cookie('digest'),
+        //照片文件
+        data:formData,
+        processData:false,
+        contentType: false,
+        success:function(data){
+            alert("上传成功！");
+            window.location.href="user.html";
+        }
+    })
+}
+
+//撤销申请方法
+function deleteApply(obj) {
+    var signUpInfoId;
+    var btnNum=$(obj).parent().parent().index();//当前点击学生的在数组中的位置
+    btnNum--;
+    $.ajax({
+        type:'get',
+        url:urlPrefix+"/v1/user/"+$.cookie('client_id')+"/sighUpInfo",
+        data:"client_id="+$.cookie('client_id')+"&digest="+$.cookie('digest'),
+        success:function (data) {
+            signUpInfoId=data.data[btnNum].sighUpInfoId;
+            //撤销项目请求
+            $.ajax({
+                type:'delete',
+                url:'',
+                data:{
+                    client_id:$.cookie('client_id'),
+                    digest:$.cookie('digest'),
+                    sighUpInfoId:signUpInfoId
+                }
+            })
+        }
+    });
+}
+//  页面加载时信息写入
+    $(function () {
+        $("#pro1").show();
+        $("#pro2").hide();
+
+        //个人信息写入
+        $.ajax({
+            type:'get',
+            url:urlPrefix+"/v1/getUserStudentInfo",
+            data:"client_id="+$.cookie('client_id')+"&digest="+$.cookie('digest'),
+            success:function (data) {
+                $("table#form1 tr:eq(0) td").text(data.data.username);
+                $("table#form1 tr:eq(1) td").text(data.data.realName);
+                $("table#form1 tr:eq(2) td").text(data.data.studentNumber);
+                $("table#form1 tr:eq(3) td").text(data.data.major);
+                $("table#form1 tr:eq(4) td").text(data.data.phone);
+                $("table#form1 tr:eq(5) td").text(data.data.qqNumber)
+                studentNumber=data.data.studentNumber;
+                major=data.data.major;
+                qqNumber=data.data.qqNumber;
+                studentInfoId=data.data.studentInfoId;
+            }
+        });
+
+        //所有项目写入
+        $.ajax({
+            type:'get',
+            url:urlPrefix+"/v1/project/"+$.cookie('client_id')+"/project",
+            data:"client_id="+$.cookie('client_id')+"&digest="+$.cookie('digest'),
+            success:function (data) {
+                for(var i=1;i<=data.data.length;i++) {
+                    $("table#form3 tbody").append("<tr><td></td><td></td><td></td><td></td></tr>");
+                    $("table#form3 tbody tr:eq("+i+") td:eq(0)").text(data.data[i-1].name);
+                    $("table#form3 tbody tr:eq("+i+") td:eq(1)").append("<a onclick="+"'showProject(this)'"+" data-toggle="+"'modal'"+" data-target="+"'#projectIntroduction'"+">项目简介</a>");
+                    $("table#form3 tbody tr:eq("+i+") td:eq(2)").text(data.data[i-1].user.realName);
+                    $("table#form3 tbody tr:eq("+i+") td:eq(3)").append("<button class="+"'btn btn-info'"+" onclick="+"'fillIntroduction(this)'"+">申请</button>")
+                }
+            }
+        });
+
+
+//个人项目信息写入
+        $.ajax({
+            type:'get',
+            url:urlPrefix+"/v1/user/"+$.cookie('client_id')+"/sighUpInfo",
+            data:"client_id="+$.cookie('client_id')+"&digest="+$.cookie('digest'),
+            success:function (data) {
+                for(var i=1;i<=data.data.length;i++){
+                    $("table#form2 tbody").append("<tr><td></td><td></td><td></td><td></td></tr>");
+                    $("table#form2 tr:eq("+i+") td:eq(0)").text(data.data[i-1].projectName);
+                    $("table#form2 tr:eq("+i+") td:eq(1)").text(data.data[i-1].createdTime);
+                    $("table#form2 tr:eq("+i+") td:eq(2)").append("<label>状态:</label>");
+                    $("table#form2 tr:eq("+i+") td:eq(2)").append("<select style="+"'height: 25px;'"+"></select>");
+                    $("table#form2 tr:eq("+i+") td:eq(3)").append("<button style="+"'display: block;margin: 0 auto;'"+" class='btn btn-danger'"+" onclick="+"'deleteApply(this)'"+">撤销</button>");
+                    $("table#form2 tr:eq("+i+") td:eq(2) select").append("<option></option>");
+                    if(data.data[i-1].checkCode==1){
+                        $("table#form2 tr:eq("+i+") td:eq(2) select option:selected").text("待审核");
+                    }else if(data.data[i-1].checkCode==2){
+                        $("table#form2 tr:eq("+i+") td:eq(2) select option:selected").text("通过");
+                    }else{
+                        $("table#form2 tr:eq("+i+") td:eq(2) select option:selected").text("拒绝");
+                    }
+                }
+            }
+        });
+
+    });
+
+
+
+</script>
+
+</html>

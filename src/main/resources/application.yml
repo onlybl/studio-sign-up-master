@@ -1,0 +1,20 @@
+server:
+  port: 8080
+spring:
+  profiles:
+    active: dev
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+  mvc:
+    static-path-pattern: /**
+    view:
+      prefix: /
+      suffix: .html
+  http:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 20MB

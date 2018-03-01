@@ -1,0 +1,197 @@
+body {
+    background-image: url("timg.jpg");
+    background-repeat: no-repeat;
+    background-size:100%;
+}
+#tab{
+    display: block;
+}
+#tip1,#tip2,#tip3{
+     width: 100px;
+     height: 42px;
+     margin-top:10px;
+     border-radius: 5px;
+     margin-left: 20px;
+ }
+#tab1,#tab2,#tab3{
+margin-top: 0;
+}
+#tip{
+    height: 60px;
+    background-color: rgba(251, 126, 126, 0.55);
+    border: 1px solid pink;
+    border-radius: 5px;
+}
+.navbar-brand{
+    margin-top: 10px;
+}
+.navbar{
+    height:60px;
+    border: none;
+}
+span1{
+    font-family: SimSun-ExtB;
+    font-size: 22px;
+    font-weight: bold;
+    color: #0C0C0C;
+}
+span{
+    font-family: SimSun-ExtB;
+    font-size: 15px;
+    font-weight: bold;
+}
+#main{
+    margin: 50px auto 0;
+    width: 900px;
+    height: 700px;
+}
+th{
+    width: 100px;
+    height: 50px;
+    font-size: 18px;
+    padding: 0 0 0 0;
+}
+td{
+    width:100px;
+    height: 50px;
+    font-size: 18px;
+    padding: 0 0 0 0;
+}
+
+#btn1{
+    display:block;
+    width: 60px;
+    height: 30px;
+    margin-left: 45%;
+}
+#btn2{
+    display: block;
+    position: relative;
+    margin: 0 auto 20px;
+    width: 120px;
+    height: 30px;
+}
+#btn3{
+    display: block;
+    position: relative;
+    margin: 0 auto 20px;
+    width: 120px;
+    height: 30px;
+}
+#form1{
+    margin-top: 30px;
+    /*border: 1px solid grey;*/
+}
+#tip4{
+    display: block;
+    margin-top: 10px;
+}
+#exist{
+    width: 40px;
+}
+input,label{
+    margin-top: 10px;
+}
+label{
+    font-size: 15px;
+}
+#tab1{
+    width:65%;
+    height: 510px;
+    margin-top: 1px;
+    margin-right: 1px;
+    background-color:rgba(132, 228, 180, 0.3);
+    border: 1px solid rgba(203, 234, 239, 0.8);
+    border-radius: 5px;
+}
+
+#other{
+    margin-top: 83px;
+    height: 80px;
+    width:899px;
+    border-radius: 5px;
+    background-color:rgba(245, 254, 100, 0.31);
+    border: 1px solid rgba(211, 234, 132, 0.74);
+}
+#other2{
+    height: 80px;
+    width:899px;
+    border-radius: 5px;
+    background-color:rgba(245, 254, 100, 0.31);
+    border: 1px solid rgba(211, 234, 132, 0.74);
+}
+#photo{
+    display: block;
+    float: right;
+    margin-right: 65px;
+    padding-top: 40px;
+}
+#head{
+    margin-left: 43%;
+}
+p{
+    color: grey;
+    margin-left:10px;
+    margin-bottom: 0;
+}
+#msg{
+    display: block;
+    float: right;
+    width:315px;
+    height: 510px;
+    margin-top: -398px;
+    margin-right:-315px;
+    background-color:rgba(180, 189, 226, 0.45);
+    border: 1px solid rgba(121, 213, 225, 0.5);
+    border-radius: 5px;
+}
+#tab2{
+    height: 510px;
+}
+
+#myTab{
+    width:20%;
+    height: 510px;
+    background-color:rgba(160, 188, 203, 0.35);
+    border: 1px solid rgba(121, 213, 225, 0.5);
+    border-radius: 5px;
+}
+#myTabContent{
+    display: block;
+    float: right;
+    width:80%;
+    margin-top: -76px;
+}
+
+#form2,#form3{
+    position: relative;
+    width:80%;
+    margin: 0 auto;
+}
+table #form3 th,td{
+    height: 40px;
+}
+#accordion{
+    position: relative;
+    margin: 10px auto;
+    width:80%;
+}
+a{
+    cursor: pointer;
+}
+#pro1{
+    height: 510px;
+    display: block;
+    margin-top: -434px;
+    background-color:rgba(132, 228, 180, 0.25);
+    border: 1px solid rgba(132, 226, 234, 0.52);
+    border-radius: 5px;
+}
+#pro2{
+    height: 510px;
+    display: block;
+    margin-top: -434px;
+    background-color:rgba(132, 228, 180, 0.25);
+    border: 1px solid rgba(132, 226, 234, 0.52);
+    border-radius: 5px;
+}

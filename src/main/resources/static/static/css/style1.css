@@ -1,0 +1,53 @@
+body{
+    background-image: url("dc49a2f115f90c9ac95529adb82b28a2.jpg");
+}
+.pos1{
+    width:400px;
+    height:160px;
+    margin:200px auto 0;
+    background: rgba(144, 163, 193, 0.26);
+    border-radius: 10px;
+}
+.pos2{
+    width:400px;
+    height:300px;
+    margin:200px auto 0;
+}
+.pos3{
+    width:400px;
+    height:160px;
+    margin:200px auto 0;
+    background: rgba(144, 163, 193, 0.26);
+    border-radius: 10px;
+}
+#login{
+    display: block;
+    margin:10px auto 0;
+}
+span{
+    color: grey;
+}
+#a1{
+    width: 70px;
+    margin-top:7px;
+    display: block;
+    margin-left: 330px;
+    font-size: 15px;
+}
+#a2{
+    width: 90px;
+    display: block;
+    font-size: 15px;
+}
+#find{
+    display: block;
+    width: 100px;
+    height: 35px;
+    border-radius: 8px;
+    margin: 10px auto 0;
+}
+#type{
+    width:100%;
+    height:40px;
+    border-radius: 5px;
+}

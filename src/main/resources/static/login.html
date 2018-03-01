@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用户登录</title>
+</head>
+<link rel="stylesheet" href="static/css/style1.css">
+<link rel="stylesheet " href="static/css/zui.css">
+<script type="text/javascript" src="static/js/jquery-3.2.1.js"></script>
+<link href="static/css/bootstrap-theme.css" rel="stylesheet" type="text/css">
+<link href="static/css/hover-min.css" rel="stylesheet">
+<script src="static/js/lbl.js"></script>
+<body>
+<form action="" id="userlogin">
+    <div class="pos2">
+        <!--<img src="static/css/QNQUWNIIR6ZV2L%7D6%7BVCM%5BID.png" style="display: block">-->
+    <div class="pos1">
+        <br>
+        <input class="form-control form-focus" name="username" style="height:50px;" autofocus type="text" placeholder="用户名:"><br>
+        <input class="form-control form-focus" name="password" type="password" style="height:50px;" autofocus placeholder="密码:"><br>
+    </div>
+    <div>
+        <input type="button" class="btn btn-success hvr-push" style="width:400px;height:47px;font-size:20px;" id="login" onclick="logPage()" value="登录">
+        <a id="a2" href="register.html"><span>新用户注册</span></a>
+    </div>
+    </div>
+</form>
+<script>
+
+    function logPage() {
+        $.ajax({
+            type: 'post',
+            // 登录接口
+            url: urlPrefix+"/pub/login",
+            data: $("#userlogin").serialize(),
+            success: function (data) {
+                try {
+                    if (data.successful == true) {
+                        if (data.data.userDto.roleList[0].name == "学生") {
+                            window.location.href = "user.html";
+                        } else if (data.data.userDto.roleList[0].name == "教师") {
+                            window.location.href = "projectList.html";
+                        } else {
+                            alert("登陆失败！请核对信息！");
+                            window.location.href = "login.html";
+                        }
+                    }else{
+                        alert("登陆失败！请核对信息！");
+                        window.location.href = "login.html";
+                    }
+                }
+                catch (e) {
+                }
+            }
+        })
+    }
+
+
+
+</script>
+</body>
+</html>

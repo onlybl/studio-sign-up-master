@@ -1,0 +1,20 @@
+body{
+    background-image: url("dc49a2f115f90c9ac95529adb82b28a2.jpg");
+}
+.pos1{
+    width:400px;
+    height:390px;
+    margin:130px auto 0;
+    background: rgba(144, 163, 193, 0.26);
+    border-radius: 10px;
+}
+#regpost{
+    display: block;
+    width: 100px;
+    height: 35px;
+    border-radius: 8px;
+    margin: 0 auto 0;
+}
+#int1{
+    margin-top: 10px;
+}

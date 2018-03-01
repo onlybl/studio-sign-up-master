@@ -1,0 +1,26 @@
+#msg{
+    display: block;
+    float: right;
+    padding-right: 30px;
+}
+.layui-nav {
+    position: fixed;
+    width: 100%;
+}
+#layui-nav{
+    margin-top: 60px;
+    width: 11%;
+    height: 94%;
+}
+#tab1,#tab2{
+    position: absolute;
+    z-index: 0;
+    width: 70%;
+    margin-left: 20%;
+    margin-top: 6%;
+    height: 80%;
+}
+
+a{
+    cursor: pointer;
+}
