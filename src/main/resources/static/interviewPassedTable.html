@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>项目申请详情表</title>
+    <title>面试详情表</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -95,10 +95,6 @@
                                                 filename: '导出表格',
                                                 exclude: '.noExl'});">
         <p>导出Excel</p></button>
-    <form id="applyPassed">
-        <p style="float: right;padding-top: 3px;margin-right: 8%">已通过</p>
-        <input style="height: 20px;width: 20px;float: right;" type="checkbox" checked="checked"/>
-    </form>
     <table id="projectMsgTable" class="table table-hover table-bordered table-responsive display" cellspacing="0" width="100%">
         <caption style="font-size: 20px;text-align: center;color: #1a1a1a;"><b>项目申请统计表</b></caption>
         <colgroup>
@@ -113,7 +109,7 @@
         <thead>
         <tr>
             <th style="text-align: center">用户名</th>
-            <th  style="text-align: center">真实姓名</th>
+            <th style="text-align: center">真实姓名</th>
             <th style="text-align: center">专业</th>
             <th style="text-align: center">电话</th>
             <th class="noExl" style="text-align: center">简介</th>
@@ -218,7 +214,7 @@
     }
 
     $(function () {
-        loadApplyPassedTable();//加载通过信息表
+        loadInterviewPassedMessage();//加载信息表
     });
 
 
@@ -240,14 +236,6 @@
         window.location.href="interview.html"
     }
 
-    //筛选通过单选框监听
-    $("form#applyPassed input").change(function () {
-        if($("form#applyPassed input").is(":checked")==true){
-            location.reload();
-        }else{
-            window.location.href="applyMessageTable.html"
-        }
-    })
 
 </script>
 </html>

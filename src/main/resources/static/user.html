@@ -349,16 +349,14 @@ function deleteApply(obj) {
                     $("table#form2 tbody").append("<tr><td></td><td></td><td></td><td></td></tr>");
                     $("table#form2 tr:eq("+i+") td:eq(0)").text(data.data[i-1].projectName);
                     $("table#form2 tr:eq("+i+") td:eq(1)").text(data.data[i-1].createdTime);
-                    $("table#form2 tr:eq("+i+") td:eq(2)").append("<label>状态:</label>");
-                    $("table#form2 tr:eq("+i+") td:eq(2)").append("<select style="+"'height: 25px;'"+"></select>");
+                    $("table#form2 tr:eq("+i+") td:eq(2)").append("<p></p>");
                     $("table#form2 tr:eq("+i+") td:eq(3)").append("<button style="+"'display: block;margin: 0 auto;'"+" class='btn btn-danger'"+" onclick="+"'deleteApply(this)'"+">撤销</button>");
-                    $("table#form2 tr:eq("+i+") td:eq(2) select").append("<option></option>");
                     if(data.data[i-1].checkCode==1){
-                        $("table#form2 tr:eq("+i+") td:eq(2) select option:selected").text("待审核");
+                        $("table#form2 tr:eq("+i+") td:eq(2) p").text("待审核");
                     }else if(data.data[i-1].checkCode==2){
-                        $("table#form2 tr:eq("+i+") td:eq(2) select option:selected").text("通过");
+                        $("table#form2 tr:eq("+i+") td:eq(2) p").text("通过");
                     }else{
-                        $("table#form2 tr:eq("+i+") td:eq(2) select option:selected").text("拒绝");
+                        $("table#form2 tr:eq("+i+") td:eq(2) p").text("拒绝");
                     }
                 }
             }

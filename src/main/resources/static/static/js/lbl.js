@@ -233,7 +233,7 @@ function loadSignUpMessage(){
                                 $.ajax({
                                     type:'patch',
                                     url:urlPrefix+"/v1/user/"+userId+"/sighUpInfo/"+signUpInfoId,
-                                    data: {
+                                    data:{
                                         checkCode: 3,
                                         client_id:$.cookie('client_id'),
                                         digest:$.cookie('digest')
@@ -250,24 +250,91 @@ function loadSignUpMessage(){
 
 // --------------------------------------interviewMessage.html js文件--------------------------------------
 var temp=0;
-var maxCapacity;//成员总人数
+var maxCapacity;//面试成员总人数
 //面试成员信息详情加载
 function loadInterviewMessage(){
-    maxCapacity=3;
-    $("tbody input:eq(0)").val("第"+(temp+1)+"页");
+    $("tbody tr:eq(2) input:eq(0)").val("第"+(temp+1)+"页");
     $.ajax({
         type:'get',
         url:'',
         data:"client_id="+$.cookie('client_id')+"&digest="+$.cookie('digest'),
         success:function (data) {
             //将第一位成员信息写入页面
-            maxCapacity=data.length;
+            maxCapacity=data.length;   //总成员数量
             $("tbody tr:eq(0) td:eq(0)").text();
             $("tbody tr:eq(0) td:eq(1)").text();
         }
 
     })
 }
+//面试结果监听
+// var userId;
+// var signUpInfoId;
+// $("form#singleSelect input").change(function () {
+//     if ($("form#singleSelect input:eq(0)").prop('checked') == true) {
+//         //获得要修改用户的userId和signUpInfoId
+//         $.ajax({
+//             type:'get',
+//             url:'',//请求面试人员信息
+//             data:"client_id="+$.cookie('client_id')+"&digest="+$.cookie('digest'),
+//             success:function (data) {
+//                 userId=;
+//                 signUpInfoId=;
+//                 //保存面试结果
+//                 $.ajax({
+//                     type:'patch',
+//                     url:''，
+//                     data:{
+//                         //面试状态，
+//                         client_id:$.cookie('client_id'),
+//                         digest:$.cookie('digest')
+//                     }
+//                 })
+//             }
+//         })
+//     }else if($("form#singleSelect input:eq(1)").prop('checked') == true){
+//         $.ajax({
+//             type:'get',
+//             url:'',//请求面试人员信息
+//             data:"client_id="+$.cookie('client_id')+"&digest="+$.cookie('digest'),
+//             success:function (data) {
+//                 userId=;
+//                 signUpInfoId=;
+//                 //保存面试结果
+//                 $.ajax({
+//                     type:'patch',
+//                     url:''，
+//                     data:{
+//                         //面试状态，
+//                         client_id:$.cookie('client_id'),
+//                             digest:$.cookie('digest')
+//                     }
+//             })
+//             }
+//         })
+//     }else if($("form#singleSelect input:eq(2)").prop('checked') == true){
+//         $.ajax({
+//             type:'get',
+//             url:'',//请求面试人员信息
+//             data:"client_id="+$.cookie('client_id')+"&digest="+$.cookie('digest'),
+//             success:function (data) {
+//                 userId=;
+//                 signUpInfoId=;
+//                 //保存面试结果
+//                 $.ajax({
+//                     type:'patch',
+//                     url:''，
+//                     data:{
+//                         //面试状态，
+//                         client_id:$.cookie('client_id'),
+//                             digest:$.cookie('digest')
+//                     }
+//             })
+//             }
+//         })
+//     }
+// })
+
 //获取下一成员信息
 function getNext() {
     temp++;
@@ -413,6 +480,42 @@ function loadApplyPassedTable(){
                     }
                 }
             );
+        }
+    })
+}
+
+function loadInterviewPassedMessage(){
+    $.ajax({
+        type:'get',
+        url:urlPrefix+"/v1/project/"+$.cookie('projectId')+"/sighUpInfo?",
+        data:"client_id="+$.cookie('client_id')+"&digest="+$.cookie('digest'),
+        success:function (data) {                                               //循环写入表格数据
+            for(var i=0;i<data.data.length;i++){
+                $('tr.odd').remove();
+                $("div#projectMsgTable_length").remove();
+                $("div.dataTables_filter").remove();
+                $("tbody").append("<tr><td></td><td></td><td></td><td></td><td class="+"noExl"+"></td><td class="+"noExl"+"></td><td class="+"noExl"+"></td></tr>");
+                $("tbody tr:eq("+i+") td:eq(0)").text(data.data[i].username);
+                $("tbody tr:eq("+i+") td:eq(1)").text(data.data[i].realName);
+                $("tbody tr:eq("+i+") td:eq(2)").text(data.data[i].major);
+                $("tbody tr:eq("+i+") td:eq(3)").text(data.data[i].phone);
+                $("tbody tr:eq("+i+") td:eq(4)").append("<button class="+"'btn btn-info'"+" style="+"'height: 28px; width: 60%; margin-left: 15%; padding: 5px 15px;'"+" data-toggle="+ "'modal'"+" data-target="+"'#studentMsg'"+" onmouseover="+"'showStudentMsg(this)'"+">个人简介</button>");
+                $("tbody tr:eq("+i+") td:eq(5)").append("<form style="+"'text-align: center;'"+"></form>");
+                $("tbody tr:eq("+i+") td:eq(5) form").append("<label>状态:</label>");
+                $("tbody tr:eq("+i+") td:eq(5) form").append("<select style="+"'height: 25px;'"+"></select>");
+                $("tbody tr:eq("+i+") td:eq(5) form select").append("<option value="+1+">待审核</option>");
+                $("tbody tr:eq("+i+") td:eq(5) form select").append("<option value="+2+">通过</option>");
+                $("tbody tr:eq("+i+") td:eq(5) form select").append("<option value="+3+">拒绝</option>");
+                $("tbody tr:eq("+i+") td:eq(6)").append("<button style="+"'display: block;margin: 0 auto;'"+" data-toggle="+ "'modal'"+" data-target="+"'#remark'"+" class="+"'btn btn-default'"+" onclick='showRemark(this)'"+">备注</button>");
+                if(data.data[i].checkCode==1){
+                    $("tbody tr:eq("+i+") td:eq(5) form select option:eq(0)").attr('selected',true);
+                }else if(data.data[i].checkCode==2){
+                    $("tbody tr:eq("+i+") td:eq(5) form select option:eq(1)").attr('selected',true);
+                }else if(data.data[i].checkCode==3){
+                    $("tbody tr:eq("+i+") td:eq(5) form select option:eq(2)").attr('selected',true);
+                }
+
+            }
         }
     })
 }

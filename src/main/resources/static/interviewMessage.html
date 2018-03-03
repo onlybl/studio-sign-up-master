@@ -86,7 +86,11 @@
 <!--面试成员信息详情-->
 
 <div id="tab2">
-    <table style="height: 75%" id="interview" class="table table-bordered table-responsive table-striped">
+    <form id="interviewPassed">
+        <p style="float: right;padding-top: 3px;margin-right: 8%">已通过</p>
+        <input style="height: 20px;width: 20px;float: right;" type="checkbox" />
+    </form>
+    <table style="height: 80%;box-shadow: 5px 5px 5px 5px rgb(0, 150, 136);border-radius:3px" id="interview" class="table table-bordered table-responsive table-striped">
         <colgroup>
             <col style="width: 55%">
             <col style="width: 45%">
@@ -99,8 +103,17 @@
         </thead>
         <tbody style="height: 100%">
             <tr style="height: 100%">
-                <td></td>
-                <td></td>
+                <td rowspan="2" style="border-radius: 4px"></td>
+                <td style="border-radius: 4px"></td>
+            </tr>
+            <tr>
+                <td style="background-color: #E6E6FA">
+                    <form id="singleSelect" style="margin-bottom: 0;font-size: 16px;text-align:center">
+                        <input style="width:16px;height:16px;margin: 0" type="radio" name="single" value="待定" checked="checked">待定
+                        <input style="width:16px;height:16px;margin: 0" type="radio" name="single" value="通过">通过
+                        <input style="width:16px;height:16px;margin: 0" type="radio" name="single" value="拒绝">拒绝
+                    </form>
+                </td>
             </tr>
             <tr>
                 <td colspan="2" style="text-align: center">
@@ -108,8 +121,7 @@
                         <i class="layui-icon" style="font-size: 20px; padding-right: 10px;">&#xe65a;</i>Last
                     </button>
                     <input type="text" style="width: 7%">
-                    <input type="text" style="width: 5%">
-                    <a role="button" onclick="getAppoint();"><i class="layui-icon" style="font-size: 20px; padding-right: 10px;">&#xe615;</i></a>
+                    <!--<a role="button" onclick="getAppoint();"><i class="layui-icon" style="font-size: 20px; padding-right: 10px;">&#xe615;</i></a>-->
                     <button class="btn btn-info" style="height: 30px;padding: 0 12px" onclick="getLast();">
                         <i class="layui-icon" style="font-size: 20px; padding-right: 10px;">&#xe65b;</i>Next
                     </button>
@@ -139,6 +151,14 @@
 
     $(function () {
         loadInterviewMessage();//加载面试成员信息
+    })
+//筛选通过单选框监听
+    $("form#interviewPassed input").change(function () {
+        if($("form#interviewPassed input").is(":checked")==true){
+            window.location.href="interviewPassedTable.html";
+        }else{
+            location.reload();
+        }
     })
 
 </script>
